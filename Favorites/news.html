@@ -421,7 +421,7 @@
     <div class="trend-section">
       <div class="trend-header">
         <span class="trend-title">📈 키워드 트렌드</span>
-        <span class="trend-subtitle">기사 제목 기준</span>
+        <span class="trend-subtitle" id="trend-subtitle">기사 제목 기준</span>
       </div>
       <div class="trend-bars" id="trend-bars"></div>
     </div>
@@ -794,6 +794,9 @@ function sectionHeader(cls,label){
 
 /* ── 트렌드 ───────────────────────── */
 function renderTrend(){
+  const lastDate=ARTICLES.reduce((max,a)=>a.date>max?a.date:max,'');
+  const el=document.getElementById('trend-subtitle');
+  if(el) el.textContent=`업데이트 ${lastDate} · 기사 제목 기준`;
   const counts=TREND_KEYWORDS.map(k=>{
     const cnt=ARTICLES.filter(a=>k.terms.some(t=>a.titleKo.includes(t)||(a.titleEn||'').includes(t))).length;
     return{...k,cnt};
