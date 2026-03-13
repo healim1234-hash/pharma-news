@@ -169,6 +169,7 @@
     .kw.ema    { background:#e3ecfb; color:#1565c0; }
     .kw.who    { background:#e0f4ee; color:#00695c; }
     .new-pill { font-size:.58rem; font-weight:800; letter-spacing:.06em; background:#e53935; color:#fff; padding:2px 6px; border-radius:20px; animation:pulse 2s infinite; }
+    .today-pill { font-size:.56rem; font-weight:900; letter-spacing:.06em; background:#1b7a45; color:#fff; padding:2px 6px; border-radius:20px; vertical-align:middle; }
     @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.65} }
     .btn-bookmark { background:none; border:none; cursor:pointer; font-size:.95rem; color:#ddd; transition:color .15s,transform .15s; padding:0; }
     .btn-bookmark:hover { transform:scale(1.2); }
@@ -815,10 +816,27 @@ function renderTrend(){
     </div>`).join('');
 }
 
+/* ── highlight 리스트 아이템 (정책용 — 오늘 뱃지 포함) ── */
+function hiItemPolicyHTML(a){
+  const todayStr=new Date().toISOString().slice(0,10);
+  const isToday=a.date===todayStr;
+  return `
+  <div class="hi-item">
+    <span class="kw ${a.kw}">${KW_LABEL[a.kw]||a.kw}</span>
+    <div class="hi-item-titles">
+      <a href="${a.url}" target="_blank" rel="noopener"
+         onclick="markRead('${a.id}');document.getElementById('card-${a.id}')?.classList.add('read');">
+        ${isToday?'<span class="today-pill">TODAY</span> ':''}${esc(a.titleKo)}
+      </a>
+    </div>
+    <span class="hi-item-meta">${a.source} · ${a.date}</span>
+  </div>`;
+}
+
 /* ── 정책 섹션 ─────────────────────── */
 function renderPolicy(){
-  const items=ARTICLES.filter(a=>POLICY_KW.includes(a.kw)).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);
-  document.getElementById('policy-list').innerHTML=items.map(hiItemHTML).join('');
+  const items=ARTICLES.filter(a=>POLICY_KW.includes(a.kw)).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,8);
+  document.getElementById('policy-list').innerHTML=items.map(hiItemPolicyHTML).join('');
 }
 
 /* ── 해외 기관 섹션 ────────────────── */

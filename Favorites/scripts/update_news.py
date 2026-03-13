@@ -32,11 +32,32 @@ HTML_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file_
 # ── RSS 피드 목록 ─────────────────────────────────────────
 # lang: 'ko' → 제목 그대로 사용 / 'en' → 한국어 번역 필요
 RSS_SOURCES = [
-    # ── 국내 ──
+    # ── 정책 기관 (매일 우선 수집) ──
     {
         'url': 'https://www.mfds.go.kr/rss/rss.do',
         'kw': 'mfds', 'lang': 'ko',
         'source_name': '식품의약품안전처'
+    },
+    {
+        'url': 'https://www.mohw.go.kr/react/al/sal0301vw.do?type=rss',
+        'kw': 'mohw', 'lang': 'ko',
+        'source_name': '보건복지부'
+    },
+    {
+        'url': 'https://www.hira.or.kr/rss/rss.do',
+        'kw': 'hira', 'lang': 'ko',
+        'source_name': '건강보험심사평가원'
+    },
+    # 정책 전문 매체
+    {
+        'url': 'https://www.medipana.com/rss/allArticle.xml',
+        'kw': 'auto', 'lang': 'ko',
+        'source_name': '메디파나뉴스'
+    },
+    {
+        'url': 'https://www.dailypharm.com/rss/allArticle.xml',
+        'kw': 'auto', 'lang': 'ko',
+        'source_name': '데일리팜'
     },
     {
         'url': 'https://medigatenews.com/rss/allArticle.xml',
