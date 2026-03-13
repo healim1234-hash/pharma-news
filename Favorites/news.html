@@ -49,8 +49,7 @@
     main { padding:0; }
     .layout { max-width:1200px; margin:0 auto; padding:22px 20px 56px; display:grid; grid-template-columns:1fr 296px; gap:22px; align-items:start; }
     .layout-main { min-width:0; }
-    .layout-side { position:sticky; top:94px; display:flex; flex-direction:column; gap:12px; max-height:calc(100vh - 100px); overflow-y:auto; scrollbar-width:none; }
-    .layout-side::-webkit-scrollbar { display:none; }
+    .layout-side { position:sticky; top:94px; align-self:start; display:flex; flex-direction:column; gap:12px; }
 
     /* 사이드바 내 정책·해외 가로 배치 */
     .side-hi-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
