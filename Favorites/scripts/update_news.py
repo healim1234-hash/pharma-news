@@ -84,6 +84,16 @@ RSS_SOURCES = [
         'kw': 'auto', 'lang': 'ko',
         'source_name': '바이오타임즈'
     },
+    {
+        'url': 'https://www.docdocdoc.co.kr/rss/allArticle.xml',
+        'kw': 'auto', 'lang': 'ko',
+        'source_name': '청년의사'
+    },
+    {
+        'url': 'https://www.monews.co.kr/rss/allArticle.xml',
+        'kw': 'auto', 'lang': 'ko',
+        'source_name': '메디칼업저버'
+    },
     # ── FDA ──
     {
         'url': 'https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/new-drug-approvals/rss.xml',
