@@ -51,8 +51,8 @@
     .layout-main { min-width:0; }
     .layout-side { position:sticky; top:94px; align-self:start; display:flex; flex-direction:column; gap:12px; }
 
-    /* 메인 영역 내 정책·해외·시장동향 가로 배치 */
-    .main-hi-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:22px; }
+    /* 메인 영역 내 정책변화·시장동향 가로 배치 */
+    .main-hi-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:22px; }
     .hi-section.market-trend { border:2px solid #1a4fa0; }
     .hi-section.market-trend .hi-header { background:#1a4fa0; }
 
@@ -382,18 +382,6 @@
           </div>
         </div>
         <div class="collapsible"><div class="hi-list" id="policy-list"></div></div>
-      </div>
-
-      <!-- 해외 기관 최신 동향 -->
-      <div class="hi-section intl" id="intl-sec">
-        <div class="hi-header">
-          <span class="hi-header-title">🌐 해외 기관 최신 동향</span>
-          <div style="display:flex;align-items:center;gap:10px">
-            <span class="hi-period">FDA · EMA · WHO</span>
-            <button class="collapse-btn" onclick="toggleSection('intl-sec')" title="접기/펼치기"><span class="icon">▼</span></button>
-          </div>
-        </div>
-        <div class="collapsible"><div class="hi-list" id="intl-list"></div></div>
       </div>
 
       <!-- 시장동향 -->
@@ -1042,12 +1030,11 @@ window.addEventListener('scroll', ()=>{
 /* ── 초기 실행 ─────────────────────── */
 renderTrend();
 renderPolicy();
-renderIntl();
 renderMarket();
 render();
 
 // 섹션 접힘 상태 복원
-['policy-sec','intl-sec','market-sec'].forEach(id=>{
+['policy-sec','market-sec'].forEach(id=>{
   if(sessionStorage.getItem('sec_'+id)==='1'){
     const el=document.getElementById(id);
     if(el) el.classList.add('collapsed');
