@@ -51,8 +51,8 @@
     .layout-main { min-width:0; }
     .layout-side { position:sticky; top:94px; align-self:start; display:flex; flex-direction:column; gap:12px; }
 
-    /* 메인 영역 내 정책변화·시장동향 가로 배치 */
-    .main-hi-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:22px; }
+    /* 메인 영역 내 시장동향·정책변화 세로 배치 */
+    .main-hi-row { display:flex; flex-direction:column; gap:16px; margin-bottom:22px; }
     .hi-section.market-trend { border:2px solid #1a4fa0; }
     .hi-section.market-trend .hi-header { background:#1a4fa0; }
 
@@ -372,18 +372,6 @@
     <!-- 정책 · 해외 가로 배치 -->
     <div class="main-hi-row">
 
-      <!-- 국내 정책 변화 -->
-      <div class="hi-section domestic" id="policy-sec">
-        <div class="hi-header">
-          <span class="hi-header-title">📋 이번 주 정책 변화</span>
-          <div style="display:flex;align-items:center;gap:10px">
-            <span class="hi-period">식약처 · 복지부 · 심평원</span>
-            <button class="collapse-btn" onclick="toggleSection('policy-sec')" title="접기/펼치기"><span class="icon">▼</span></button>
-          </div>
-        </div>
-        <div class="collapsible"><div class="hi-list" id="policy-list"></div></div>
-      </div>
-
       <!-- 시장동향 -->
       <div class="hi-section market-trend" id="market-sec">
         <div class="hi-header">
@@ -394,6 +382,18 @@
           </div>
         </div>
         <div class="collapsible"><div class="hi-list" id="market-list"></div></div>
+      </div>
+
+      <!-- 국내 정책 변화 -->
+      <div class="hi-section domestic" id="policy-sec">
+        <div class="hi-header">
+          <span class="hi-header-title">📋 이번 주 정책 변화</span>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span class="hi-period">식약처 · 복지부 · 심평원</span>
+            <button class="collapse-btn" onclick="toggleSection('policy-sec')" title="접기/펼치기"><span class="icon">▼</span></button>
+          </div>
+        </div>
+        <div class="collapsible"><div class="hi-list" id="policy-list"></div></div>
       </div>
 
     </div><!-- end main-hi-row -->
