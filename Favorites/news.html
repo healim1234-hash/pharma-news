@@ -30,114 +30,7 @@
       color: #777;
     }
 
-    .section {
-      max-width: 860px;
-      margin: 0 auto 36px;
-    }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #1a4fa0;
-      border-left: 5px solid #1a4fa0;
-      padding-left: 12px;
-      margin-bottom: 16px;
-    }
-
-    .section-title span.badge {
-      background: #1a4fa0;
-      color: #fff;
-      font-size: 0.7rem;
-      padding: 2px 8px;
-      border-radius: 12px;
-    }
-
-    .card-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 16px 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-
-    .card:hover {
-      box-shadow: 0 4px 16px rgba(26, 79, 160, 0.15);
-      transform: translateY(-2px);
-    }
-
-    .card a {
-      text-decoration: none;
-      color: #1a1a2e;
-      font-size: 0.97rem;
-      font-weight: 600;
-      line-height: 1.5;
-    }
-
-    .card a:hover { color: #1a4fa0; }
-
-    .card-meta {
-      display: flex;
-      gap: 12px;
-      margin-top: 7px;
-      font-size: 0.78rem;
-      color: #888;
-    }
-
-    .card-meta .source {
-      color: #1a4fa0;
-      font-weight: 600;
-    }
-
-    .summary {
-      margin-top: 9px;
-      font-size: 0.83rem;
-      color: #555;
-      line-height: 1.6;
-      border-top: 1px solid #f0f0f0;
-      padding-top: 8px;
-    }
-
-    /* 최신 기사 배지 */
-    .new-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: linear-gradient(135deg, #e53935, #ff6f00);
-      color: #fff;
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 12px;
-      vertical-align: middle;
-      margin-right: 6px;
-      letter-spacing: 0.03em;
-      box-shadow: 0 2px 6px rgba(229,57,53,0.35);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 2px 6px rgba(229,57,53,0.35); }
-      50% { box-shadow: 0 2px 12px rgba(229,57,53,0.65); }
-    }
-
-    /* 최신 기사 카드 강조 */
-    .card.latest {
-      border-left: 4px solid #e53935;
-      background: linear-gradient(to right, #fff8f8, #fff);
-    }
-
-    .card.latest a { color: #1a1a2e; }
-
-    /* 최신 기사 하이라이트 섹션 */
+    /* 최신 기사 하이라이트 */
     .highlight-section {
       max-width: 860px;
       margin: 0 auto 36px;
@@ -157,10 +50,7 @@
       gap: 8px;
     }
 
-    .highlight-section .highlight-title::before {
-      content: '★';
-      font-size: 1rem;
-    }
+    .highlight-section .highlight-title::before { content: '★'; }
 
     .highlight-cards {
       display: flex;
@@ -185,7 +75,7 @@
       background: #e3eaff;
       padding: 2px 8px;
       border-radius: 10px;
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
     .highlight-card a {
@@ -198,16 +88,145 @@
 
     .highlight-card a:hover { color: #1a4fa0; }
 
+    /* 연도 섹션 */
+    .year-section {
+      max-width: 860px;
+      margin: 0 auto 40px;
+    }
+
+    .year-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .year-label {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #1a4fa0;
+    }
+
+    .year-label.y2025 { color: #555; }
+
+    .year-divider {
+      flex: 1;
+      height: 2px;
+      background: #dce4f0;
+      border-radius: 2px;
+    }
+
+    .year-count {
+      font-size: 0.75rem;
+      color: #999;
+    }
+
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 16px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 16px rgba(26,79,160,0.15);
+      transform: translateY(-2px);
+    }
+
+    .card.latest {
+      border-left: 4px solid #e53935;
+      background: linear-gradient(to right, #fff8f8, #fff);
+    }
+
+    .card-title-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .kw-badge {
+      flex-shrink: 0;
+      font-size: 0.66rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-top: 3px;
+    }
+
+    .kw-badge.market { background: #e8f4fd; color: #0277bd; }
+    .kw-badge.launch { background: #e8f5e9; color: #2e7d32; }
+
+    .new-badge {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #e53935, #ff6f00);
+      color: #fff;
+      font-size: 0.66rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-top: 3px;
+      letter-spacing: 0.03em;
+      box-shadow: 0 2px 6px rgba(229,57,53,0.35);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 2px 6px rgba(229,57,53,0.35); }
+      50% { box-shadow: 0 2px 12px rgba(229,57,53,0.65); }
+    }
+
+    .card a {
+      text-decoration: none;
+      color: #1a1a2e;
+      font-size: 0.97rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .card a:hover { color: #1a4fa0; }
+
+    .card-meta {
+      display: flex;
+      gap: 12px;
+      margin-top: 7px;
+      font-size: 0.78rem;
+      color: #888;
+    }
+
+    .card-meta .source { color: #1a4fa0; font-weight: 600; }
+
+    .summary {
+      margin-top: 9px;
+      font-size: 0.83rem;
+      color: #555;
+      line-height: 1.6;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 8px;
+    }
+
     footer {
       text-align: center;
       font-size: 0.78rem;
       color: #aaa;
       margin-top: 16px;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     @media (max-width: 600px) {
       header h1 { font-size: 1.3rem; }
-      .section-title { font-size: 1rem; }
+      .year-label { font-size: 1.1rem; }
       .highlight-section { padding: 16px; }
     }
   </style>
@@ -216,7 +235,7 @@
 
 <header>
   <h1>제약·의약품 최신 뉴스</h1>
-  <p>키워드: <strong>제약 시장 전망</strong> &nbsp;|&nbsp; <strong>의약품 출시</strong> &nbsp;&nbsp;·&nbsp;&nbsp; 업데이트: 2026년 3월 13일</p>
+  <p>키워드: <strong>제약 시장 전망</strong> &nbsp;|&nbsp; <strong>의약품 출시</strong> &nbsp;&nbsp;·&nbsp;&nbsp; 검색 기간: 2025년 하반기 ~ 현재 &nbsp;&nbsp;·&nbsp;&nbsp; 업데이트: 2026-03-13</p>
 </header>
 
 <!-- ===== 최신 기사 하이라이트 ===== -->
@@ -226,30 +245,35 @@
     <div class="highlight-card">
       <span class="kw-tag">제약 시장 전망</span>
       <a href="https://www.hkn24.com/news/articleView.html?idxno=349131" target="_blank" rel="noopener">
-        <span class="new-badge">NEW</span>[기획] 2026 제약강국 대전환: 관세 장벽과 AI 혁신, 생존의 길을 묻다 (上)
+        <span class="new-badge">NEW</span>&nbsp;[기획] 2026 제약강국 대전환: 관세 장벽과 AI 혁신, 생존의 길을 묻다 (上)
       </a>
     </div>
     <div class="highlight-card">
       <span class="kw-tag">의약품 출시</span>
       <a href="https://chembank.org/%EC%97%B0%EA%B5%AC%EB%8F%99%ED%96%A5/?mod=document&uid=352" target="_blank" rel="noopener">
-        <span class="new-badge">NEW</span>2026년 주목할 신약 11종 (Drugs to Watch 2026) — Clarivate 연례보고서
+        <span class="new-badge">NEW</span>&nbsp;2026년 주목할 신약 11종 (Drugs to Watch 2026) — Clarivate 연례보고서
       </a>
     </div>
   </div>
 </div>
 
-<!-- ===== 섹션 1: 제약 시장 전망 ===== -->
-<div class="section">
-  <div class="section-title">
-    제약 시장 전망
-    <span class="badge">6건</span>
+<!-- ===== 2026년 섹션 ===== -->
+<div class="year-section">
+  <div class="year-header">
+    <span class="year-label">2026년</span>
+    <div class="year-divider"></div>
+    <span class="year-count">8건</span>
   </div>
   <div class="card-list">
 
     <div class="card latest">
-      <a href="https://www.hkn24.com/news/articleView.html?idxno=349131" target="_blank" rel="noopener">
-        <span class="new-badge">NEW</span>[기획] 2026 제약강국 대전환: 관세 장벽과 AI 혁신, 생존의 길을 묻다 (上)
-      </a>
+      <div class="card-title-row">
+        <span class="kw-badge market">제약 시장 전망</span>
+        <span class="new-badge">NEW</span>
+        <a href="https://www.hkn24.com/news/articleView.html?idxno=349131" target="_blank" rel="noopener">
+          [기획] 2026 제약강국 대전환: 관세 장벽과 AI 혁신, 생존의 길을 묻다 (上)
+        </a>
+      </div>
       <div class="card-meta">
         <span class="source">헬스코리아뉴스</span>
         <span>2026-03-13</span>
@@ -259,23 +283,62 @@
       </div>
     </div>
 
+    <div class="card latest">
+      <div class="card-title-row">
+        <span class="kw-badge launch">의약품 출시</span>
+        <span class="new-badge">NEW</span>
+        <a href="https://chembank.org/%EC%97%B0%EA%B5%AC%EB%8F%99%ED%96%A5/?mod=document&uid=352" target="_blank" rel="noopener">
+          2026년 주목할 신약 11종 (Drugs to Watch 2026) — Clarivate 연례보고서
+        </a>
+      </div>
+      <div class="card-meta">
+        <span class="source">켐뱅크 (Clarivate)</span>
+        <span>2026-03-13</span>
+      </div>
+      <div class="summary">
+        클래리베이트가 선정한 2026년 주목 신약 11종 분석. 비만치료제(오포글리프론 등) 및 항암제가 다수 포함.
+      </div>
+    </div>
+
     <div class="card">
-      <a href="https://www.medipharmhealth.co.kr/news/article.html?no=114718" target="_blank" rel="noopener">
-        2026 제약바이오 산업 전망…대미 수출 구조 다변화하고 전략적 품목 공략 필요
-      </a>
+      <div class="card-title-row">
+        <span class="kw-badge market">제약 시장 전망</span>
+        <a href="https://www.medipharmhealth.co.kr/news/article.html?no=114718" target="_blank" rel="noopener">
+          2026 제약바이오 산업 전망…대미 수출 구조 다변화하고 전략적 품목 공략 필요
+        </a>
+      </div>
       <div class="card-meta">
         <span class="source">메디팜헬스뉴스</span>
         <span>2026-03-13</span>
       </div>
       <div class="summary">
-        미국 의존도를 낮추고 수출 구조를 다변화해야 한다는 제약바이오 산업 전망 보고서. ADC·비만치료제·CDMO 수혜가 핵심 키워드로 꼽힘.
+        미국 의존도를 낮추고 수출 구조를 다변화해야 한다는 제약바이오 산업 전망 보고서. ADC·비만치료제·CDMO 수혜가 핵심 키워드.
       </div>
     </div>
 
     <div class="card">
-      <a href="https://www.biotimes.co.kr/news/articleView.html?idxno=30336" target="_blank" rel="noopener">
-        중동 리스크에 흔들린 증시… 기술력 갖춘 K-바이오는 견조
-      </a>
+      <div class="card-title-row">
+        <span class="kw-badge launch">의약품 출시</span>
+        <a href="https://www.medipharmhealth.co.kr/news/article.html?no=114776" target="_blank" rel="noopener">
+          동아제약, 물 없이 녹는 파우더형 감기약 신제품 출시
+        </a>
+      </div>
+      <div class="card-meta">
+        <span class="source">메디팜헬스뉴스</span>
+        <span>2026-03-13</span>
+      </div>
+      <div class="summary">
+        동아제약이 물 없이 입에서 바로 녹는 파우더형 감기약을 출시. 복용 편의성을 대폭 개선한 신제형 의약품.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title-row">
+        <span class="kw-badge market">제약 시장 전망</span>
+        <a href="https://www.biotimes.co.kr/news/articleView.html?idxno=30336" target="_blank" rel="noopener">
+          중동 리스크에 흔들린 증시… 기술력 갖춘 K-바이오는 견조
+        </a>
+      </div>
       <div class="card-meta">
         <span class="source">바이오타임즈</span>
         <span>2026-03-13</span>
@@ -286,9 +349,12 @@
     </div>
 
     <div class="card">
-      <a href="https://medigatenews.com/news/3568467901" target="_blank" rel="noopener">
-        국내 제약시장 3.6%씩 성장 25조4000억원…바이오 증가율 33.1%
-      </a>
+      <div class="card-title-row">
+        <span class="kw-badge market">제약 시장 전망</span>
+        <a href="https://medigatenews.com/news/3568467901" target="_blank" rel="noopener">
+          국내 제약시장 3.6%씩 성장 25조4000억원…바이오 증가율 33.1%
+        </a>
+      </div>
       <div class="card-meta">
         <span class="source">메디게이트뉴스</span>
         <span>2026-03-13</span>
@@ -299,9 +365,12 @@
     </div>
 
     <div class="card">
-      <a href="https://www.kpanews.co.kr/article/show.asp?category=D&idx=249338" target="_blank" rel="noopener">
-        제약산업 부진 벗고 성장세, 올해부터 올라가나
-      </a>
+      <div class="card-title-row">
+        <span class="kw-badge market">제약 시장 전망</span>
+        <a href="https://www.kpanews.co.kr/article/show.asp?category=D&idx=249338" target="_blank" rel="noopener">
+          제약산업 부진 벗고 성장세, 올해부터 올라가나
+        </a>
+      </div>
       <div class="card-meta">
         <span class="source">약사공론</span>
         <span>2026-03-13</span>
@@ -312,9 +381,12 @@
     </div>
 
     <div class="card">
-      <a href="https://www.fortunebusinessinsights.com/smart-manufacturing-in-pharma-market-115664" target="_blank" rel="noopener">
-        제약 스마트 제조 시장 규모·점유율 전망 [2026–2034]
-      </a>
+      <div class="card-title-row">
+        <span class="kw-badge launch">의약품 출시</span>
+        <a href="https://www.fortunebusinessinsights.com/smart-manufacturing-in-pharma-market-115664" target="_blank" rel="noopener">
+          제약 스마트 제조 시장 규모·점유율 전망 [2026–2034]
+        </a>
+      </div>
       <div class="card-meta">
         <span class="source">Fortune Business Insights</span>
         <span>2026-03-13</span>
@@ -327,89 +399,140 @@
   </div>
 </div>
 
-<!-- ===== 섹션 2: 의약품 출시 ===== -->
-<div class="section">
-  <div class="section-title">
-    의약품 출시
-    <span class="badge">6건</span>
+<!-- ===== 2025년 하반기 섹션 ===== -->
+<div class="year-section">
+  <div class="year-header">
+    <span class="year-label y2025">2025년 하반기</span>
+    <div class="year-divider"></div>
+    <span class="year-count">8건</span>
   </div>
   <div class="card-list">
 
-    <div class="card latest">
-      <a href="https://chembank.org/%EC%97%B0%EA%B5%AC%EB%8F%99%ED%96%A5/?mod=document&uid=352" target="_blank" rel="noopener">
-        <span class="new-badge">NEW</span>2026년 주목할 신약 11종 (Drugs to Watch 2026) — Clarivate 연례보고서
-      </a>
+    <div class="card">
+      <div class="card-title-row">
+        <span class="kw-badge market">제약 시장 전망</span>
+        <a href="https://www.medipana.com/news/articleView.html?idxno=403717" target="_blank" rel="noopener">
+          [메디파나뉴스 선정] 2025년 약업계 10대 뉴스
+        </a>
+      </div>
       <div class="card-meta">
-        <span class="source">켐뱅크 (Clarivate)</span>
-        <span>2026-03-13</span>
+        <span class="source">메디파나뉴스</span>
+        <span>2025-12-30</span>
       </div>
       <div class="summary">
-        클래리베이트가 선정한 2026년 주목 신약 11종 분석. 비만치료제(오포글리프론 등) 및 항암제가 다수 포함.
+        메디파나뉴스가 선정한 2025년 약업계 핵심 이슈 10가지. 신약 허가 혁신, 약가 개편, K-바이오 성장 등이 포함됨.
       </div>
     </div>
 
     <div class="card">
-      <a href="https://www.medipharmhealth.co.kr/news/article.html?no=114776" target="_blank" rel="noopener">
-        동아제약, 물 없이 녹는 파우더형 감기약 신제품 출시
-      </a>
+      <div class="card-title-row">
+        <span class="kw-badge launch">의약품 출시</span>
+        <a href="https://www.kobia.kr/notice/notice.php?boardid=notice&mode=view&idx=1096" target="_blank" rel="noopener">
+          「국내 바이오의약품 산업 Key Data 2025」 하반기 인포그래픽 발간
+        </a>
+      </div>
       <div class="card-meta">
-        <span class="source">메디팜헬스뉴스</span>
-        <span>2026-03-13</span>
+        <span class="source">한국바이오의약품협회 (KOBIA)</span>
+        <span>2025-08-01</span>
       </div>
       <div class="summary">
-        동아제약이 물 없이 입에서 바로 녹는 파우더형 감기약을 출시, 복용 편의성을 대폭 개선한 신제형 의약품.
+        2025년 하반기 국내 바이오의약품 산업 핵심 데이터를 담은 인포그래픽 발간. 시장 규모·허가 현황·수출 동향 수록.
       </div>
     </div>
 
     <div class="card">
-      <a href="https://www.pharmnews.com/" target="_blank" rel="noopener">
-        팜뉴스 — 의약품 출시·허가 최신 뉴스 모음
-      </a>
+      <div class="card-title-row">
+        <span class="kw-badge market">제약 시장 전망</span>
+        <a href="https://medicalworldnews.co.kr/m/view.php?idx=1510966363" target="_blank" rel="noopener">
+          2025년 제약바이오 산업, 기회와 도전 공존…경제 불안·공급망 위기 '위험요소'
+        </a>
+      </div>
+      <div class="card-meta">
+        <span class="source">메디컬월드뉴스</span>
+        <span>2025-07-15</span>
+      </div>
+      <div class="summary">
+        바이오의약품·CDMO 시장 확대라는 성장 동력과 고환율·공급망 불안정이라는 리스크가 공존한다는 하반기 전망 분석.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title-row">
+        <span class="kw-badge launch">의약품 출시</span>
+        <a href="https://www.ezyeconomy.com/news/articleView.html?idxno=227720" target="_blank" rel="noopener">
+          식약처, 의약품 개발 지원 위한 '2025 하반기 심사 설명회' 개최
+        </a>
+      </div>
+      <div class="card-meta">
+        <span class="source">이지경제</span>
+        <span>2025-09-05</span>
+      </div>
+      <div class="summary">
+        식품의약품안전평가원이 허가·심사 최신 정보 제공을 위해 제약업계 대상 2025 하반기 심사 설명회를 개최.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title-row">
+        <span class="kw-badge market">제약 시장 전망</span>
+        <a href="https://www.deloitte.com/kr/ko/Industries/life-sciences-health-care/analysis/Top-5-Challenges-in-Global-Bio-Industry-2025.html" target="_blank" rel="noopener">
+          2025년 글로벌 제약·바이오 산업의 5대 과제 — Deloitte Korea
+        </a>
+      </div>
+      <div class="card-meta">
+        <span class="source">딜로이트 코리아</span>
+        <span>2025-08-20</span>
+      </div>
+      <div class="summary">
+        딜로이트가 분석한 글로벌 제약·바이오 산업의 2025년 5대 핵심 과제. AI 신약 개발, 공급망 재편, 규제 혁신 포함.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title-row">
+        <span class="kw-badge launch">의약품 출시</span>
+        <a href="http://www.bosa.co.kr/news/articleView.html?idxno=2270268" target="_blank" rel="noopener">
+          약가제도 개편안, 건정심 소위 '미상정'…"의견수렴 계속"
+        </a>
+      </div>
+      <div class="card-meta">
+        <span class="source">보건복지부 (복지타임즈)</span>
+        <span>2025-10-22</span>
+      </div>
+      <div class="summary">
+        제네릭 약가 산정률 인하(53.55%→40%대) 방안을 놓고 제약업계 반발로 건정심 소위 상정이 보류됨.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title-row">
+        <span class="kw-badge market">제약 시장 전망</span>
+        <a href="https://www.pharmnews.com/news/articleView.html?idxno=255224" target="_blank" rel="noopener">
+          제약·바이오 산업 높아진 기대감, 2025년 해답은 '매출·R&D'
+        </a>
+      </div>
       <div class="card-meta">
         <span class="source">팜뉴스</span>
-        <span>2026-03-13</span>
+        <span>2025-07-03</span>
       </div>
       <div class="summary">
-        국내 의약품 출시·허가·임상 관련 최신 소식을 빠르게 전하는 제약 전문 뉴스 채널.
+        2025년 제약·바이오 섹터의 기대감 상승 배경과 함께, 실질적 성과로 이어지려면 매출 성장과 R&D 성과가 관건이라는 분석.
       </div>
     </div>
 
     <div class="card">
-      <a href="https://www.dailypharm.com/" target="_blank" rel="noopener">
-        데일리팜 — 신약·제네릭 출시 동향
-      </a>
+      <div class="card-title-row">
+        <span class="kw-badge launch">의약품 출시</span>
+        <a href="https://eiec.kdi.re.kr/policy/materialView.do?num=269929" target="_blank" rel="noopener">
+          2025년 하반기 의약품 허가특허연계제도 교육 안내
+        </a>
+      </div>
       <div class="card-meta">
-        <span class="source">데일리팜</span>
-        <span>2026-03-13</span>
+        <span class="source">KDI 경제교육·정보센터</span>
+        <span>2025-09-01</span>
       </div>
       <div class="summary">
-        신약 및 제네릭 의약품 출시 동향, 식약처 허가 현황 등 국내 제약 산업 전반을 커버하는 전문지.
-      </div>
-    </div>
-
-    <div class="card">
-      <a href="https://www.yakup.com/" target="_blank" rel="noopener">
-        약업닷컴 — 의약품 출시·약사·의사 전문 뉴스
-      </a>
-      <div class="card-meta">
-        <span class="source">약업신문</span>
-        <span>2026-03-13</span>
-      </div>
-      <div class="summary">
-        보건의약계를 대표하는 전문 신문으로, 신규 의약품 출시·처방 정보·임상 결과를 폭넓게 다룸.
-      </div>
-    </div>
-
-    <div class="card">
-      <a href="http://www.newsmp.com/" target="_blank" rel="noopener">
-        의약뉴스 — 의약품 출시·정책 최신 소식
-      </a>
-      <div class="card-meta">
-        <span class="source">의약뉴스</span>
-        <span>2026-03-13</span>
-      </div>
-      <div class="summary">
-        의약품 출시, 식약처 정책, 보험 급여 등 최신 의약 뉴스를 실시간으로 전달하는 전문 매체.
+        식약처가 제약업계 실무자 대상 '의약품 허가특허연계제도' 교육을 실시. 신약·제네릭 출시 관련 특허 분쟁 절차 안내.
       </div>
     </div>
 
@@ -417,7 +540,7 @@
 </div>
 
 <footer>
-  본 페이지는 WebSearch 결과를 기반으로 자동 생성되었습니다. &nbsp;|&nbsp; 각 기사의 저작권은 해당 언론사에 있습니다.
+  본 페이지는 WebSearch 결과를 기반으로 자동 생성되었습니다. &nbsp;|&nbsp; 검색 기간: 2025년 하반기 ~ 현재 &nbsp;|&nbsp; 각 기사의 저작권은 해당 언론사에 있습니다.
 </footer>
 
 </body>
