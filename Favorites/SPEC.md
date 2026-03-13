@@ -178,7 +178,87 @@
 
 ---
 
-## 7. 변경 이력 요약
+## 7. 자동 업데이트 시스템
+
+### 7-1. 업데이트 주기
+- **매일 오전 8시 (KST)** GitHub Actions가 자동 실행
+- `workflow_dispatch`로 GitHub Actions 탭에서 수동 즉시 실행 가능
+
+### 7-2. 파일 구조
+```
+pharma-news/
+├── news.html                          # 메인 페이지
+├── scripts/
+│   ├── update_news.py                 # RSS 수집·업데이트 스크립트
+│   └── requirements.txt               # Python 의존성
+└── .github/
+    └── workflows/
+        └── daily_update.yml           # GitHub Actions 워크플로우
+```
+
+### 7-3. 자동화 흐름
+```
+매일 08:00 KST
+      │
+      ▼ GitHub Actions (ubuntu-latest, Python 3.11)
+scripts/update_news.py 실행
+      │
+      ├─ 1. RSS 수집 (국내 6개 + 해외 3개 피드)
+      ├─ 2. 관련성 키워드 필터링
+      ├─ 3. kw 자동 분류 (제목 기반)
+      ├─ 4. 해외 기사 영문 → 국문 번역 (Google Translate)
+      ├─ 5. 중복 제거 (URL + ID 해시 기반)
+      ├─ 6. isNew 만료 처리 (14일 이상 → isNew 제거)
+      └─ 7. news.html ARTICLES 배열 상단 삽입 → 커밋·푸시
+```
+
+### 7-4. RSS 수집 소스
+| 분류 | 소스 | kw |
+|---|---|---|
+| 국내 | 식품의약품안전처 | mfds |
+| 국내 | 메디게이트뉴스 | auto |
+| 국내 | 팜뉴스 | auto |
+| 국내 | 히트뉴스 | auto |
+| 국내 | 약사공론 | auto |
+| 국내 | 바이오타임즈 | auto |
+| 해외 | FDA (신약 승인 + 보도자료) | fda |
+| 해외 | EMA | ema |
+| 해외 | WHO | who |
+
+- `kw: 'auto'` 소스는 기사 제목을 분석해 mfds/mohw/hira/launch/market 중 자동 분류
+
+### 7-5. 자동 생성 기사 ID 규칙
+- 형식: `r` + URL MD5 해시 앞 7자리 (예: `r3f8a2c1`)
+- 수동 입력 기사: `a01`, `b01` 등 알파벳+숫자 조합
+- 중복 방지: 동일 URL은 항상 동일 ID → 재수집해도 중복 삽입 없음
+
+### 7-6. 수동 보완 방법
+1. **중요 기사 수동 추가**: Claude Code에 "이 기사 추가해줘 + URL" 요청
+2. **잘못된 기사 제거**: news.html ARTICLES 배열에서 해당 항목 삭제
+3. **번역 품질 수정**: `titleKo` 필드 직접 수정
+4. **즉시 실행**: GitHub → Actions 탭 → `제약시장 뉴스 자동 업데이트` → Run workflow
+
+### 7-7. Python 의존성
+| 패키지 | 용도 |
+|---|---|
+| `feedparser` | RSS/Atom 피드 파싱 |
+| `deep-translator` | 영문 → 국문 번역 |
+| `requests` | HTTP 요청 |
+| `python-dateutil` | 날짜 파싱 |
+
+---
+
+## 8. 디자인 원칙
+
+- **컬러 팔레트**: 네이비(`#12233d`) · 골드(`#c8a96e`) · 아이보리(`#f5f2ec`) 기반 뉴스레터 스타일
+- **반응형**: 640px 이하에서 1열 그리드, 일부 UI 숨김
+- **국내 기사**: 기본 카드 스타일
+- **해외 기사**: 좌측 빨간 보더 (`border-left: 3px solid #8b0000`)
+- **읽은 기사**: 반투명 처리 (`opacity: 0.5`)
+
+---
+
+## 9. 변경 이력 요약
 
 | 회차 | 주요 변경 내용 |
 |---|---|
@@ -193,3 +273,4 @@
 | 9 | 심평원 추가, 해외 기사(FDA·EMA·WHO) 추가, 국문 번역 제목 병기 |
 | 10 | 클립보드 복사, 메모 기능, 이슈별 그룹 보기 추가 |
 | 11 | UX 개선 6종: 섹션 접기/펼치기, 미읽음 배지, Featured 카드, 필터 상태바, 스크롤 복원, 이슈 중복 제거+교차 태그 |
+| 12 | 자동 업데이트 시스템: GitHub Actions + Python RSS 수집기 (매일 KST 08:00) |
