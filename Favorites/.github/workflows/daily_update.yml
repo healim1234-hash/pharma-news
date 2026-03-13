@@ -1,0 +1,48 @@
+name: 제약시장 뉴스 자동 업데이트
+
+on:
+  schedule:
+    # UTC 23:00 = KST 08:00 (매일 아침 8시)
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+    # 수동 실행 버튼 (GitHub Actions 탭에서 언제든 실행 가능)
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Python 3.11 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: scripts/requirements.txt
+
+      - name: 의존성 설치
+        run: pip install -r scripts/requirements.txt
+
+      - name: 뉴스 업데이트 실행
+        run: python scripts/update_news.py
+
+      - name: 변경사항 커밋 및 푸시
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add news.html
+          # 변경사항이 있을 때만 커밋
+          if git diff --staged --quiet; then
+            echo "변경사항 없음 — 커밋 생략"
+          else
+            ARTICLE_COUNT=$(git diff --staged news.html | grep -c '^+.*titleKo' || true)
+            git commit -m "🤖 자동 업데이트 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M KST') — ${ARTICLE_COUNT}건 추가"
+            git push
+            echo "✅ 푸시 완료"
+          fi
