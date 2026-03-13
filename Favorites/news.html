@@ -51,20 +51,10 @@
     .layout-main { min-width:0; }
     .layout-side { position:sticky; top:94px; align-self:start; display:flex; flex-direction:column; gap:12px; }
 
-    /* 사이드바 내 정책·해외 가로 배치 */
-    .side-hi-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-    .layout-side .hi-section { margin-bottom:0; }
-    .layout-side .hi-section.domestic { border-width:1px; }
-    .layout-side .hi-section.intl { border-width:1px; }
-    .layout-side .hi-header { padding:9px 13px; }
-    .layout-side .hi-header-title { font-size:.65rem; gap:5px; }
-    .layout-side .hi-period { display:none; }
-    .layout-side .collapse-btn { display:none; }
-    .layout-side .hi-item { padding:8px 12px; gap:7px; }
-    .layout-side .hi-item .kw { display:none; }
-    .layout-side .hi-item-titles a { font-size:.8rem; }
-    .layout-side .hi-item-titles .en-title { display:none; }
-    .layout-side .hi-item-meta { display:none; }
+    /* 메인 영역 내 정책·해외 가로 배치 */
+    .main-hi-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:22px; }
+
+    /* 사이드바 */
     .layout-side .trend-section { margin-bottom:0; }
     .layout-side .trend-label { width:90px; font-size:.67rem; }
     .layout-side .trend-count { font-size:.64rem; }
@@ -94,13 +84,10 @@
     /* 반응형 */
     @media(max-width:900px) {
       .layout { grid-template-columns:1fr; }
-      .layout-side { position:static; max-height:none; overflow:visible; }
-      .side-hi-row { grid-template-columns:1fr 1fr; }
-      .layout-side .hi-period { display:inline; }
-      .layout-side .collapse-btn { display:inline-flex; }
+      .layout-side { position:static; }
     }
     @media(max-width:560px) {
-      .side-hi-row { grid-template-columns:1fr; }
+      .main-hi-row { grid-template-columns:1fr; }
     }
 
     /* ── 키워드 트렌드 ── */
@@ -380,6 +367,35 @@
   <!-- ── 메인 기사 영역 (왼쪽) ── -->
   <div class="layout-main">
 
+    <!-- 정책 · 해외 가로 배치 -->
+    <div class="main-hi-row">
+
+      <!-- 국내 정책 변화 -->
+      <div class="hi-section domestic" id="policy-sec">
+        <div class="hi-header">
+          <span class="hi-header-title">📋 이번 주 정책 변화</span>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span class="hi-period">식약처 · 복지부 · 심평원</span>
+            <button class="collapse-btn" onclick="toggleSection('policy-sec')" title="접기/펼치기"><span class="icon">▼</span></button>
+          </div>
+        </div>
+        <div class="collapsible"><div class="hi-list" id="policy-list"></div></div>
+      </div>
+
+      <!-- 해외 기관 최신 동향 -->
+      <div class="hi-section intl" id="intl-sec">
+        <div class="hi-header">
+          <span class="hi-header-title">🌐 해외 기관 최신 동향</span>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span class="hi-period">FDA · EMA · WHO</span>
+            <button class="collapse-btn" onclick="toggleSection('intl-sec')" title="접기/펼치기"><span class="icon">▼</span></button>
+          </div>
+        </div>
+        <div class="collapsible"><div class="hi-list" id="intl-list"></div></div>
+      </div>
+
+    </div><!-- end main-hi-row -->
+
     <!-- 즐겨찾기 -->
     <div id="bookmark-section">
       <div class="section-header">
@@ -408,34 +424,6 @@
       <div class="trend-bars" id="trend-bars"></div>
     </div>
 
-    <!-- 정책 · 해외 가로 배치 -->
-    <div class="side-hi-row">
-
-      <!-- 국내 정책 변화 -->
-      <div class="hi-section domestic" id="policy-sec">
-        <div class="hi-header">
-          <span class="hi-header-title">📋 정책 변화</span>
-          <div style="display:flex;align-items:center;gap:6px">
-            <span class="hi-period">식약처 · 복지부 · 심평원</span>
-            <button class="collapse-btn" onclick="toggleSection('policy-sec')" title="접기/펼치기"><span class="icon">▼</span></button>
-          </div>
-        </div>
-        <div class="collapsible"><div class="hi-list" id="policy-list"></div></div>
-      </div>
-
-      <!-- 해외 기관 최신 동향 -->
-      <div class="hi-section intl" id="intl-sec">
-        <div class="hi-header">
-          <span class="hi-header-title">🌐 해외 동향</span>
-          <div style="display:flex;align-items:center;gap:6px">
-            <span class="hi-period">FDA · EMA · WHO</span>
-            <button class="collapse-btn" onclick="toggleSection('intl-sec')" title="접기/펼치기"><span class="icon">▼</span></button>
-          </div>
-        </div>
-        <div class="collapsible"><div class="hi-list" id="intl-list"></div></div>
-      </div>
-
-    </div><!-- end side-hi-row -->
   </aside>
 
 </div><!-- end layout -->
